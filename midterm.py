@@ -25,7 +25,8 @@ for line in data_two:
     age_groups[index] = np.vstack((age_groups[index], np.asarray(line)))
 age_groups = np.asarray(age_groups)
 twenties,thirties,fourties,fifties,sixties,seventies = age_groups[:,1:]
-import pdb; pdb.set_trace()
+
+
 
 # initialize the logistic regression class
 linreg = LinearRegression()
@@ -43,16 +44,15 @@ pylab.title("Linear Regressor Trained to Full Dataset")
 pylab.legend(loc='best')
 pylab.show()
 
-# fit the regressor to the twenties
-import pdb; pdb.set_trace()
-linreg.fit(twenties[:], twenties[:][2])
-predictions = linreg.predict(twenties[:][0])
+# fit the regressor to the twenties and predict
+linreg.fit(twenties[:,1:2], twenties[:,2])
+predictions = linreg.predict(twenties[:,1:2])
 
 
 # plot twenties prediction
 pylab.clf()
-pylab.plot(twenties[:][0], twenties[:][2], ls='', marker='.', label="data")
-pylab.plot(twenties[:][0], predictions, label="prediction")
-pylab.title("Linear Regressor Trained to Full Dataset")
+pylab.plot(twenties[:,1], twenties[:,2], ls='', marker='.', label="data")
+pylab.plot(twenties[:,1], predictions, label="prediction")
+pylab.title("Linear Regressor Trained to Twenties")
 pylab.legend(loc='best')
 pylab.show()
