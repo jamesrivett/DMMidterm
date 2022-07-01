@@ -27,7 +27,7 @@ twenties,thirties,fourties,fifties,sixties,seventies = age_groups[:,1:]
 
 
 
-# initialize the logistic regression class
+# initialize the logistic regression classdata_one
 linreg = LinearRegression()
 
 # fit the regressor to the full dataset and predict
@@ -43,15 +43,18 @@ pylab.title("Linear Regressor Trained to Full Dataset | Slope: %s" % linreg.coef
 pylab.legend(loc='best')
 pylab.show()
 
+# select group to compare
+group = seventies
+
 # fit the regressor to the twenties and predict
-linreg.fit(twenties[:,1:2], twenties[:,2])
-predictions = linreg.predict(twenties[:,1:2])
+linreg.fit(group[:,1:2], group[:,2])
+predictions = linreg.predict(group[:,1:2])
 
 
-# plot twenties prediction
+# plot group prediction
 pylab.clf()
-pylab.plot(twenties[:,1], twenties[:,2], ls='', marker='.', label="data")
-pylab.plot(twenties[:,1], predictions, label="prediction")
-pylab.title("Linear Regressor Trained to Twenties | Slope: %s" % linreg.coef_)
+pylab.plot(group[:,1], group[:,2], ls='', marker='.', label="data")
+pylab.plot(group[:,1], predictions, label="prediction")
+pylab.title("Linear Regressor Trained to Selected Group | Slope: %s" % linreg.coef_)
 pylab.legend(loc='best')
 pylab.show()
