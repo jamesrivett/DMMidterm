@@ -19,11 +19,13 @@ data_one = read_csv(filename_one)
 data_two = read_csv(filename_two)
 
 # divide data_two into age groups
-age_groups = [np.empty((1,3)) for i in range(6)]
+age_groups = [np.zeros((3,)*1) for i in range(6)]
 for line in data_two:  
     index = int((line[0] / 10) - 2)
-    age_groups[index] = np.append(arr=age_groups[index], values=line, axis=0)
-twenties,thirties,fourties,fifties,sixties,seventies = age_groups
+    age_groups[index] = np.vstack((age_groups[index], np.asarray(line)))
+age_groups = np.asarray(age_groups)
+twenties,thirties,fourties,fifties,sixties,seventies = age_groups[:,1:]
+import pdb; pdb.set_trace()
 
 # initialize the logistic regression class
 linreg = LinearRegression()
